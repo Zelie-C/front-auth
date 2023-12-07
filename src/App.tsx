@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   {
     path: '/inscription',
     element: <Inscription />
-  }
+  },
 ])
 
 function App() {

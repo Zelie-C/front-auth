@@ -32,9 +32,14 @@ const Connexion = () => {
                     })
                 });
                 const data = await response.json();
-                console.log(data)
-                localStorage.setItem('token', JSON.stringify(data.token));
-                navigate('/home')
+                if(data.token){
+                    console.log(data)
+                    localStorage.setItem('token', data.token);
+                    navigate('/home')
+                }
+                else {
+                    console.log('bad identification infos');
+                }
             } catch (error) {
                 console.log('Erreur lors de la connexion', error)
             }
