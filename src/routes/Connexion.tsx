@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 
 const Connexion = () => {
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
@@ -21,7 +21,7 @@ const Connexion = () => {
     const handleConnexionClick = useCallback(
         async() => {
             try {
-                const response = await fetch ('http://localhost:3333/users/auth/', {
+                const response = await fetch ('http://localhost:3333/api/auth/local/', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -31,12 +31,14 @@ const Connexion = () => {
                         "password": password
                     })
                 });
-                const data = await response.json()
+                const data = await response.json();
                 console.log(data)
+                localStorage.setItem('token', JSON.stringify(data.token));
+                navigate('/home')
             } catch (error) {
                 console.log('Erreur lors de la connexion', error)
             }
-        }, [])
+        }, [email, password])
 
         const handleLinkClick = useCallback(
             () => {

@@ -2,11 +2,16 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './App.css'
 import Connexion from './routes/Connexion'
 import Inscription from './routes/Inscription'
+import Home from './routes/Home'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Connexion />
+    element: <Home />
+  },
+  {
+    path: '/home',
+    element: <Home />
   },
   {
     path: '/connexion',

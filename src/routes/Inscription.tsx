@@ -26,7 +26,7 @@ const Inscription = () => {
     const handleInscriptionClick = useCallback(
         async() => {
             try {
-                const response = await fetch ('http://localhost:3333/users/register/', {
+                const response = await fetch ('http://localhost:3333/api/auth/local/register', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const Inscription = () => {
             } catch (error) {
                 console.log('Erreur lors de la connexion', error)
             }
-        }, [])
+        }, [username, email, password])
 
     const handleLinkClick = useCallback(
         () => {
