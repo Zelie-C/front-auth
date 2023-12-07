@@ -3,23 +3,24 @@ import './App.css'
 import Connexion from './routes/Connexion'
 import Inscription from './routes/Inscription'
 import Home from './routes/Home'
+import Page from './components/Page'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
+    element: <Page protectedPage={true} Content={Home} />
   },
   {
     path: '/home',
-    element: <Home />
+    element: <Page protectedPage={true} Content={Home} />
   },
   {
     path: '/connexion',
-    element: <Connexion />
+    element: <Page protectedPage={false} Content={Connexion} />
   },
   {
     path: '/inscription',
-    element: <Inscription />
+    element: <Page protectedPage={false} Content={Inscription} />
   },
 ])
 

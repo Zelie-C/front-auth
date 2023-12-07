@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface IPageProps {
     protectedPage: boolean;
@@ -16,11 +16,14 @@ const Page = ({protectedPage, Content}: IPageProps) => {
             if(protectedPage) {
                 const response = await fetch('http://localhost:3333/api/users/me/', {
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        'Authorization': `Bearer ${token}`
                     }
                 })
                 const data = await response.json()
-                if(!data) {
+                console.log(data);
+                
+                if(data.message === "erreur") {
+                    localStorage.removeItem('token')
                     navigate('/connexion')
                 }
             }
@@ -29,7 +32,9 @@ const Page = ({protectedPage, Content}: IPageProps) => {
     }, [protectedPage])
 
     return (
-        <div className=""></div>
+        <div className={"route" + protectedPage ? " protected-route" : ""}>
+            <Content />
+        </div>
     )
 }
 
